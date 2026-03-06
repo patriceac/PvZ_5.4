@@ -157,6 +157,7 @@ function createPea() {
 
 function createSun() {
   const root = svg('g', { class: 'sun-token' });
+  const spin = svg('g', { class: 'sun-token__spin' });
   const rays = svg('g', { fill: '#ffd84a' });
   for (let index = 0; index < 12; index += 1) {
     rays.append(svg('rect', {
@@ -170,8 +171,9 @@ function createSun() {
   }
   const core = svg('circle', { cx: 0, cy: 0, r: 24, fill: '#ffea61' });
   const coreInner = svg('circle', { cx: 0, cy: 0, r: 14, fill: '#fff3ab' });
-  append(root, rays, core, coreInner);
-  return { root, parts: {} };
+  append(spin, rays, core, coreInner);
+  root.append(spin);
+  return { root, parts: { spin } };
 }
 
 function createExplosion() {

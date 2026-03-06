@@ -121,17 +121,17 @@ export const ZOMBIE_DEFS = {
 const WAVE_SCRIPT = [
   {
     wave: 1,
-    time: 12,
+    time: 24,
     spawns: [{ type: 'zombie', lane: 2, offset: 0 }]
   },
   {
     wave: 2,
-    time: 30,
+    time: 42,
     spawns: [{ type: 'zombie', lane: 1, offset: 0 }]
   },
   {
     wave: 3,
-    time: 50,
+    time: 62,
     spawns: [
       { type: 'zombie', lane: 3, offset: 0 },
       { type: 'zombie', lane: 0, offset: 2.8 }
@@ -139,7 +139,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 4,
-    time: 72,
+    time: 84,
     spawns: [
       { type: 'coneheadZombie', lane: 4, offset: 0 },
       { type: 'zombie', lane: 2, offset: 3 }
@@ -147,7 +147,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 5,
-    time: 96,
+    time: 108,
     spawns: [
       { type: 'zombie', lane: 0, offset: 0 },
       { type: 'zombie', lane: 3, offset: 2.6 },
@@ -156,7 +156,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 6,
-    time: 118,
+    time: 130,
     flag: true,
     spawns: [
       { type: 'coneheadZombie', lane: 4, offset: 0 },
@@ -167,7 +167,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 7,
-    time: 144,
+    time: 156,
     spawns: [
       { type: 'coneheadZombie', lane: 3, offset: 0 },
       { type: 'zombie', lane: 0, offset: 2.4 },
@@ -176,7 +176,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 8,
-    time: 169,
+    time: 181,
     spawns: [
       { type: 'bucketheadZombie', lane: 4, offset: 0 },
       { type: 'zombie', lane: 1, offset: 2.6 }
@@ -184,7 +184,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 9,
-    time: 188,
+    time: 200,
     spawns: [
       { type: 'coneheadZombie', lane: 2, offset: 0 },
       { type: 'coneheadZombie', lane: 0, offset: 2.4 },
@@ -194,7 +194,7 @@ const WAVE_SCRIPT = [
   },
   {
     wave: 10,
-    time: 208,
+    time: 220,
     flag: true,
     spawns: [
       { type: 'bucketheadZombie', lane: 1, offset: 0 },

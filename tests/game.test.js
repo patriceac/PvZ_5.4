@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { GAME_CONFIG, PLANT_DEFS, ZOMBIE_DEFS } from '../src/content.js';
+import { FRONT_YARD_DAY_LEVEL, GAME_CONFIG, PLANT_DEFS, ZOMBIE_DEFS } from '../src/content.js';
 import {
   createGameState,
   performAction,
@@ -70,6 +70,12 @@ test('sun timing spawns sky sun and sunflower sun', () => {
 
   advance(state, 17.1);
   assert.ok(state.suns.some((sun) => sun.source === 'sunflower'));
+});
+
+test('front yard day keeps the opening wave late enough for economy setup', () => {
+  assert.equal(FRONT_YARD_DAY_LEVEL.waves[0].time, 24);
+  assert.equal(FRONT_YARD_DAY_LEVEL.spawns[0].time, 24);
+  assert.ok(FRONT_YARD_DAY_LEVEL.waves[1].time >= 42);
 });
 
 test('cooldown enforcement blocks replant until recharge completes', () => {
