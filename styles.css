@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html,
 body {
   min-height: 100%;
@@ -280,6 +284,21 @@ h1 {
   opacity: 1;
 }
 
+.startup-hint {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 4;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 220, 166, 0.36);
+  border-radius: 18px;
+  background: rgba(71, 38, 16, 0.94);
+  color: #fff1cf;
+  line-height: 1.45;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -350,7 +369,13 @@ svg .pea {
 }
 
 svg .sun-token {
+  pointer-events: auto;
+}
+
+svg .sun-token__spin {
   animation: sun-spin 10s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 svg .effect--explosion {

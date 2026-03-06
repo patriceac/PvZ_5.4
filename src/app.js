@@ -3,6 +3,10 @@ import { createGameState, performAction, stepGame } from './engine.js';
 import { GameRenderer } from './renderer.js';
 
 export function createApp(documentRef = document) {
+  if (typeof window !== 'undefined') {
+    window.__PVZ_BOOTED = true;
+  }
+
   const elements = {
     svg: documentRef.getElementById('board-svg'),
     seedbank: documentRef.getElementById('seedbank'),
