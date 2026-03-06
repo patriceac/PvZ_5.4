@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plants vs. Zombies SVG Clone</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Front Yard Day</p>
+          <h1>Plants vs. Zombies</h1>
+        </div>
+        <div class="topbar-controls">
+          <button id="pause-toggle" class="chrome-button" type="button">Pause</button>
+          <button id="restart-button" class="chrome-button chrome-button--accent" type="button">Restart</button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="hud-panel">
+          <div class="sun-meter">
+            <span class="sun-meter__label">Sun</span>
+            <strong id="sun-count">150</strong>
+          </div>
+
+          <div class="hud-row">
+            <div>
+              <p class="hud-label">Wave</p>
+              <strong id="wave-label">Wave 1 / 10</strong>
+            </div>
+            <div>
+              <p class="hud-label">Status</p>
+              <strong id="status-label">Prepare your defense</strong>
+            </div>
+          </div>
+
+          <div class="seedbank-wrap">
+            <div id="seedbank" class="seedbank" aria-label="Seed packets"></div>
+            <button id="shovel-button" class="shovel-button" type="button" aria-pressed="false">
+              Shovel
+            </button>
+          </div>
+
+          <div class="legend">
+            <p>Click a seed, then click a tile to plant.</p>
+            <p>Keys: <kbd>1</kbd>-<kbd>5</kbd> seeds, <kbd>Esc</kbd> cancel, <kbd>Space</kbd> pause, <kbd>R</kbd> restart.</p>
+          </div>
+        </section>
+
+        <section class="board-shell">
+          <div id="banner" class="banner" aria-live="polite"></div>
+          <svg id="board-svg" class="board-svg" viewBox="0 0 1280 720" aria-label="Game board"></svg>
+          <div id="overlay" class="overlay" hidden>
+            <div class="overlay-card">
+              <p id="overlay-kicker" class="overlay-kicker">Battle finished</p>
+              <h2 id="overlay-title">Victory</h2>
+              <p id="overlay-copy">The lawn is secure.</p>
+              <button id="overlay-restart" class="chrome-button chrome-button--accent" type="button">Play again</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
