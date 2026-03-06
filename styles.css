@@ -339,6 +339,15 @@ svg .lane-cell {
   fill: transparent;
 }
 
+svg .board-layer--selection,
+svg .board-layer--mowers,
+svg .board-layer--plants,
+svg .board-layer--projectiles,
+svg .board-layer--zombies,
+svg .board-layer--effects {
+  pointer-events: none;
+}
+
 svg .lane-cell.is-hovered {
   fill: rgba(255, 248, 208, 0.2);
 }

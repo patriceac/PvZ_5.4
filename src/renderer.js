@@ -98,14 +98,14 @@ export class GameRenderer {
       }));
     }
 
-    const selectionLayer = svg('g');
-    const mowerLayer = svg('g');
-    const plantLayer = svg('g');
-    const projectileLayer = svg('g');
-    const zombieLayer = svg('g');
-    const effectLayer = svg('g');
-    const sunLayer = svg('g');
-    const interactionLayer = svg('g');
+    const selectionLayer = svg('g', { class: 'board-layer board-layer--selection' });
+    const mowerLayer = svg('g', { class: 'board-layer board-layer--mowers' });
+    const plantLayer = svg('g', { class: 'board-layer board-layer--plants' });
+    const projectileLayer = svg('g', { class: 'board-layer board-layer--projectiles' });
+    const zombieLayer = svg('g', { class: 'board-layer board-layer--zombies' });
+    const effectLayer = svg('g', { class: 'board-layer board-layer--effects' });
+    const sunLayer = svg('g', { class: 'board-layer board-layer--suns' });
+    const interactionLayer = svg('g', { class: 'board-layer board-layer--interaction' });
 
     for (let row = 0; row < 5; row += 1) {
       for (let col = 0; col < 9; col += 1) {
@@ -131,7 +131,7 @@ export class GameRenderer {
       this.callbacks.onCancel();
     });
 
-    svgRoot.append(background, selectionLayer, mowerLayer, plantLayer, projectileLayer, zombieLayer, effectLayer, sunLayer, interactionLayer);
+    svgRoot.append(background, interactionLayer, selectionLayer, mowerLayer, plantLayer, projectileLayer, zombieLayer, effectLayer, sunLayer);
 
     return {
       selectionLayer,
@@ -265,6 +265,7 @@ export class GameRenderer {
       this.mowerNodes,
       () => {
         const entry = SvgFactory.createMower();
+        entry.root.style.pointerEvents = 'none';
         this.scene.mowerLayer.append(entry.root);
         return entry;
       },
@@ -279,6 +280,7 @@ export class GameRenderer {
       this.plantNodes,
       (plant) => {
         const entry = SvgFactory.createPlant(plant.type);
+        entry.root.style.pointerEvents = 'none';
         this.scene.plantLayer.append(entry.root);
         return entry;
       },
@@ -295,6 +297,7 @@ export class GameRenderer {
       this.projectileNodes,
       () => {
         const entry = SvgFactory.createProjectile();
+        entry.root.style.pointerEvents = 'none';
         this.scene.projectileLayer.append(entry.root);
         return entry;
       },
@@ -308,6 +311,7 @@ export class GameRenderer {
       this.zombieNodes,
       (zombie) => {
         const entry = SvgFactory.createZombie(zombie.type);
+        entry.root.style.pointerEvents = 'none';
         this.scene.zombieLayer.append(entry.root);
         return entry;
       },
@@ -325,6 +329,7 @@ export class GameRenderer {
       this.effectNodes,
       (effect) => {
         const entry = SvgFactory.createEffect(effect.type);
+        entry.root.style.pointerEvents = 'none';
         this.scene.effectLayer.append(entry.root);
         return entry;
       },
@@ -355,7 +360,8 @@ export class GameRenderer {
     const layer = this.scene.selectionLayer;
     layer.replaceChildren();
 
-    if (!state.hoverCell) {
+    const hasPlacementIntent = Boolean(state.selectedSeed) || state.cursorMode === 'shovel';
+    if (!state.hoverCell || !hasPlacementIntent) {
       return;
     }
 
@@ -371,10 +377,11 @@ export class GameRenderer {
   }
 
   renderCells(state) {
+    const hasPlacementIntent = Boolean(state.selectedSeed) || state.cursorMode === 'shovel';
     for (let row = 0; row < state.config.rows; row += 1) {
       for (let col = 0; col < state.config.cols; col += 1) {
         const rect = this.cellNodes.get(`${row}-${col}`);
-        const isHovered = state.hoverCell && state.hoverCell.row === row && state.hoverCell.col === col;
+        const isHovered = hasPlacementIntent && state.hoverCell && state.hoverCell.row === row && state.hoverCell.col === col;
         const isReady = isHovered && state.selectedSeed && canPlantSeedAt(state, state.selectedSeed, row, col);
         const hasPlant = state.plants.some((plant) => plant.row === row && plant.col === col);
         const isInvalid = isHovered && ((state.selectedSeed && !canPlantSeedAt(state, state.selectedSeed, row, col)) || (state.cursorMode === 'shovel' && !hasPlant));
